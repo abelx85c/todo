@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h3 class="big-title">添加任务：</h3>
+    <h2 class="big-title">待辦清單</h2>
     <input
       placeholder="在此添加任务"
       class="task-input"
@@ -8,21 +8,30 @@
       v-model.trim="inputTask"
       @keyup.enter="createHandler"
     />
-    <input class="btn-input" type="button" @click="createHandler" value="+" />
+    <input class="btn-input" type="button" @click="createHandler" value="新增" />
 
-    <el-table :data="taskList">
-      <el-table-column prop="id" label="項目ID" width="120"></el-table-column>
+    <el-button type="primary" @click="on_click">
+      新增任務
+      <addTaskDialog v-if="dialogFormVisible == true"></addTaskDialog>
+    </el-button>
+    <el-table v-bind:data="taskList">
+      <el-table-column prop="id" label="項目ID" width="140"></el-table-column>
       <el-table-column prop="tittle" label="項目標題"></el-table-column>
       <el-table-column>
-        <el-button size="mini" type v-on:click="updateHandler">UPDATE</el-button>
+        <template>
+          <el-button size="mini" type v-on:click="updateHandler()">UPDATE</el-button>
+        </template>
       </el-table-column>
       <el-table-column>
-        <el-button size="mini" type="danger" v-on:click="deleteHandler(index)">DELETE</el-button>
+        <template scope="scope_for_delete">
+          <el-button
+            size="mini"
+            type="danger"
+            v-on:click="deleteHandler(scope_for_delete.$index)"
+          >DELETE</el-button>
+        </template>
       </el-table-column>
     </el-table>
-
-    
-
   </div>
 </template>
 
@@ -30,6 +39,7 @@
 import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import addTaskDialog from "@/components/addTaskDialog";
 
 Vue.use(VueAxios, axios);
 console.log("印出 components/TodoHeader.vue");
@@ -39,10 +49,18 @@ export default {
   //不用data:{}物件的形式，而是使用function的形式避開傳值傳址的問題
   data: function() {
     return {
-      inputTask: ""
+      inputTask: "",
+      dialogFormVisible: false
     };
   },
+  components: {
+    addTaskDialog
+  },
   methods: {
+    on_click() {
+      this.dialogFormVisible = true;
+      console.log("按了新增按鈕 on_click() dialogFormVisible的值是"+ this.dialogFormVisible)
+    },
     createHandler() {
       if (!this.inputTask) {
         return false;
