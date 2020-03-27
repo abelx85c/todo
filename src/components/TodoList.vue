@@ -10,10 +10,14 @@
     />
     <input class="btn-input" type="button" @click="createHandler" value="新增" />
 
-    <el-button type="primary" @click="on_click">
-      新增任務
-      <addTaskDialog v-if="dialogFormVisible == true"></addTaskDialog>
-    </el-button>
+    <div>
+      <el-button type="primary" @click="on_click">新增任務</el-button>
+      <addTaskDialog v-if="dialogFormVisible == true"
+                                        v-on:off_dialog="dialogFormVisible = false"
+                                        dialogFormVisible>
+      </addTaskDialog>
+    </div>
+
     <el-table v-bind:data="taskList">
       <el-table-column prop="id" label="項目ID" width="140"></el-table-column>
       <el-table-column prop="tittle" label="項目標題"></el-table-column>
@@ -46,7 +50,6 @@ console.log("印出 components/TodoHeader.vue");
 
 export default {
   name: "TodoList",
-  //不用data:{}物件的形式，而是使用function的形式避開傳值傳址的問題
   data: function() {
     return {
       inputTask: "",
@@ -59,7 +62,7 @@ export default {
   methods: {
     on_click() {
       this.dialogFormVisible = true;
-      console.log("按了新增按鈕 on_click() dialogFormVisible的值是"+ this.dialogFormVisible)
+      console.log("按了click按鈕dialogFormVisible的值是" + this.dialogFormVisible);
     },
     createHandler() {
       if (!this.inputTask) {

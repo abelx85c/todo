@@ -1,28 +1,25 @@
 <template>
-  <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+  <el-dialog title="新增任務" :visible.sync="dialogFormVisible">
     <el-form :model="form">
-      <el-form-item label="活动名称" :label-width="formLabelWidth">
+      <el-form-item label="任務名稱" :label-width="formLabelWidth">
         <el-input v-model="form.name" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="活动区域" :label-width="formLabelWidth">
-        <el-select v-model="form.region" placeholder="请选择活动区域">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
-        </el-select>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="on_click">取 消</el-button>
-      <el-button type="primary" @click="on_click">确 定</el-button>
+      <el-button @click="offClick">取 消</el-button>
+      <el-button type="primary" @click="offClick">确 定</el-button>
     </div>
   </el-dialog>
 </template>
 
 <script>
+//import Vue from "vue";
+import axios from "axios";
+//import VueAxios from "vue-axios";
+
 export default {
   data() {
     return {
-      dialogFormVisible:true,
       form: {
         name: "",
         region: "",
@@ -36,10 +33,31 @@ export default {
       formLabelWidth: "120px"
     };
   },
+  props: {
+    dialogFormVisible: {
+      type: Boolean,
+      require: true
+    }
+  },
   methods: {
-      on_click(){
-          this.dialogFormVisible = false
+    offClick() {
+          this.$emit('off_dialog')
+          console.log("子組件 offClick() 回傳母組件")
+    },
+    createHandler_dialog() {
+      if (!this.form.name) {
+        return false;
       }
+      axios
+        .post("http://localhost:3000/contents", {
+          tittle: this.form.name,
+          ischecked: false
+        })
+        .then(res => {
+          this.form.name = "";
+          this.$store.commit("addContent", res.data);
+        });
+    }
   }
 };
 </script>
