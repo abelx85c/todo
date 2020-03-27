@@ -1,14 +1,14 @@
 <template>
   <div class="main">
     <h2 class="big-title">待辦清單</h2>
-    <input
+    <!-- <input
       placeholder="在此添加任务"
       class="task-input"
       type="text"
       v-model.trim="inputTask"
       @keyup.enter="createHandler"
     />
-    <input class="btn-input" type="button" @click="createHandler" value="新增" />
+    <input class="btn-input" type="button" @click="createHandler" value="新增" /> -->
 
     <div>
       <el-button type="primary" @click="on_click">新增任務</el-button>

@@ -1,5 +1,5 @@
 <template>
-  <el-dialog title="新增任務" :visible.sync="dialogFormVisible">
+  <el-dialog title="新增任務" :visible.sync="dialogFormVisible" :before-close="offClick">
     <el-form :model="form">
       <el-form-item label="任務名稱" :label-width="formLabelWidth">
         <el-input v-model="form.name" autocomplete="off"></el-input>
@@ -7,7 +7,7 @@
     </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button @click="offClick">取 消</el-button>
-      <el-button type="primary" @click="offClick">确 定</el-button>
+      <el-button type="primary" @click="createHandler_dialog">確定</el-button>
     </div>
   </el-dialog>
 </template>
@@ -42,9 +42,11 @@ export default {
   methods: {
     offClick() {
           this.$emit('off_dialog')
-          console.log("子組件 offClick() 回傳母組件")
+          console.log("子組件Dialog offClick() 回傳母組件")
     },
     createHandler_dialog() {
+      this.$emit('off_dialog')
+      console.log("子組件Dialog offClick() 回傳母組件")
       if (!this.form.name) {
         return false;
       }
@@ -56,7 +58,9 @@ export default {
         .then(res => {
           this.form.name = "";
           this.$store.commit("addContent", res.data);
+          console.log(res.data)
         });
+
     }
   }
 };
