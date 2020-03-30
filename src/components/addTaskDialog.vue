@@ -1,5 +1,5 @@
 <template>
-  <el-dialog title="新增任務" :visible.sync="dialogFormVisible" :before-close="offClick">
+  <el-dialog title="新增任務" :visible.sync="child_dialogFormVisible" :before-close="offClick">
     <el-form :model="form">
       <el-form-item label="任務名稱" :label-width="formLabelWidth">
         <el-input v-model="form.name" autocomplete="off"></el-input>
@@ -34,7 +34,7 @@ export default {
     };
   },
   props: {
-    dialogFormVisible: {
+    child_dialogFormVisible: {
       type: Boolean,
       require: true
     }

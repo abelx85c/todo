@@ -12,9 +12,9 @@
 
     <div>
       <el-button type="primary" @click="on_click">新增任務</el-button>
-      <addTaskDialog v-if="dialogFormVisible == true"
-                                        v-on:off_dialog="dialogFormVisible = false"
-                                        dialogFormVisible>
+      <addTaskDialog v-if="parent_dialogFormVisible == true"
+                                        v-on:off_dialog="parent_dialogFormVisible = false"
+                                        v-bind:child_dialogFormVisible="parent_dialogFormVisible">
       </addTaskDialog>
     </div>
 
@@ -53,7 +53,7 @@ export default {
   data: function() {
     return {
       inputTask: "",
-      dialogFormVisible: false
+      parent_dialogFormVisible: false
     };
   },
   components: {
@@ -61,8 +61,8 @@ export default {
   },
   methods: {
     on_click() {
-      this.dialogFormVisible = true;
-      console.log("按了click按鈕dialogFormVisible的值是" + this.dialogFormVisible);
+      this.parent_dialogFormVisible = true;
+      console.log("按了click按鈕parent_dialogFormVisible的值是" + this.parent_dialogFormVisible);
     },
     createHandler() {
       if (!this.inputTask) {
