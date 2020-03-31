@@ -1,15 +1,18 @@
 <template>
   <el-container>
     <el-main>
-      <h1>layout/BaseMain</h1>
+      <TodoList></TodoList>
     </el-main>
   </el-container>
 </template>
 
 <script>
-
+import TodoList from "@/components/TodoList.vue";
 
 export default {
-
+  name: "",
+  components: {
+    TodoList
+  }
 };
 </script>

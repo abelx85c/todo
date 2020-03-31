@@ -9,7 +9,8 @@
           <BaseHeader></BaseHeader>
         </el-header>
         <el-main>
-          <BaseMain></BaseMain>
+          <BaseMain>
+          </BaseMain>
         </el-main>
         <el-footer>
           <BaseFooter></BaseFooter>
@@ -26,7 +27,7 @@ import BaseMain from "@/layout/BaseMain.vue";
 import BaseFooter from "@/layout/BaseFooter.vue";
 
 export default {
-  name: "app",
+  name: "Layout",
   components: {
     BaseAside,
     BaseHeader,
