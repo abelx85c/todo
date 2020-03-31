@@ -41,11 +41,11 @@ export default {
   },
   methods: {
     offClick() {
-          this.$emit('off_dialog')
+          this.$emit('offDialog')
           console.log("子組件Dialog offClick() 回傳母組件")
     },
     createHandler_dialog() {
-      this.$emit('off_dialog')
+      this.$emit('offDialog')
       console.log("子組件Dialog offClick() 回傳母組件")
       if (!this.form.name) {
         return false;

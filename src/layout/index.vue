@@ -2,17 +2,17 @@
   <div id="app">
     <el-container>
       <el-aside width="200px">
-        <Aside></Aside>
+        <BaseAside></BaseAside>
       </el-aside>
       <el-container>
         <el-header>
-          <Header></Header>
+          <BaseHeader></BaseHeader>
         </el-header>
         <el-main>
-          <Main></Main>
+          <BaseMain></BaseMain>
         </el-main>
         <el-footer>
-          <Footer></Footer>
+          <BaseFooter></BaseFooter>
         </el-footer>
       </el-container>
     </el-container>
@@ -20,18 +20,18 @@
 </template>
 
 <script>
-import Aside from "@/layout/Aside.vue";
-import Header from "@/layout/Header.vue";
-import Main from "@/layout/Main.vue";
-import Footer from "@/layout/Footer.vue";
+import BaseAside from "@/layout/BaseAside.vue";
+import BaseHeader from "@/layout/BaseHeader.vue";
+import BaseMain from "@/layout/BaseMain.vue";
+import BaseFooter from "@/layout/BaseFooter.vue";
 
 export default {
   name: "app",
   components: {
-    Aside,
-    Header,
-    Main,
-    Footer
+    BaseAside,
+    BaseHeader,
+    BaseMain,
+    BaseFooter
   }
 };
 </script>

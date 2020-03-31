@@ -12,10 +12,10 @@
 
     <div>
       <el-button type="primary" @click="on_click">新增任務</el-button>
-      <addTaskDialog v-if="parent_dialogFormVisible == true"
-                                        v-on:off_dialog="parent_dialogFormVisible = false"
+      <TodoListDialog v-if="parent_dialogFormVisible == true"
+                                        v-on:offDialog="parent_dialogFormVisible = false"
                                         v-bind:child_dialogFormVisible="parent_dialogFormVisible">
-      </addTaskDialog>
+      </TodoListDialog>
     </div>
 
     <el-table v-bind:data="taskList">
@@ -23,7 +23,7 @@
       <el-table-column prop="tittle" label="項目標題"></el-table-column>
       <el-table-column>
         <template>
-          <el-button size="mini" type v-on:click="updateHandler()">UPDATE</el-button>
+          <el-button size="mini" type="warning" v-on:click="updateHandler()">UPDATE</el-button>
         </template>
       </el-table-column>
       <el-table-column>
@@ -43,7 +43,7 @@
 import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
-import addTaskDialog from "@/components/addTaskDialog";
+import TodoListDialog from "@/components/TodoListDialog";
 
 Vue.use(VueAxios, axios);
 console.log("印出 components/TodoHeader.vue");
@@ -57,7 +57,7 @@ export default {
     };
   },
   components: {
-    addTaskDialog
+    TodoListDialog
   },
   methods: {
     on_click() {
