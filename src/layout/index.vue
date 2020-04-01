@@ -9,8 +9,8 @@
           <BaseHeader />
         </el-header>
         <el-main>
+          <!-- <h1>layout/index</h1>           -->
           <BaseMain />
-          <h1>layout/index</h1>
         </el-main>
         <el-footer>
           <BaseFooter />
@@ -37,7 +37,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .el-header,
 .el-footer {
   background-color: #b3c0d1;

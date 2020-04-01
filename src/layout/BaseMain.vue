@@ -1,8 +1,9 @@
 <template>
   <el-container class="app-main">
     <el-main >
-      <!-- <router-view :key="key" /> -->
-      <h1>layout/BaseMain</h1>
+      <!-- <h1>layout/BaseMain</h1> -->
+      <router-view />
+      <!-- <router-view :key="key" /> -->      
     </el-main>
   </el-container>
 </template>

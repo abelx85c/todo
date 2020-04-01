@@ -1,6 +1,9 @@
 <template>
   <div class="main">
-    <h2 class="big-title">待辦清單</h2>
+    <div class="big-title">
+      <h2>待辦清單</h2>
+    </div>
+
     <!-- <input
       placeholder="在此添加任务"
       class="task-input"
@@ -8,14 +11,15 @@
       v-model.trim="inputTask"
       @keyup.enter="createHandler"
     />
-    <input class="btn-input" type="button" @click="createHandler" value="新增" /> -->
+    <input class="btn-input" type="button" @click="createHandler" value="新增" />-->
 
-    <div>
+    <div class="add-button">
       <el-button type="primary" @click="on_click">新增任務</el-button>
-      <TodoListDialog v-if="parent_dialogFormVisible == true"
-                                        v-on:offDialog="parent_dialogFormVisible = false"
-                                        v-bind:child_dialogFormVisible="parent_dialogFormVisible">
-      </TodoListDialog>
+      <TodoListDialog
+        v-if="parent_dialogFormVisible == true"
+        v-on:offDialog="parent_dialogFormVisible = false"
+        v-bind:child_dialogFormVisible="parent_dialogFormVisible"
+      ></TodoListDialog>
     </div>
 
     <el-table v-bind:data="taskList">
@@ -62,7 +66,10 @@ export default {
   methods: {
     on_click() {
       this.parent_dialogFormVisible = true;
-      console.log("按了click按鈕parent_dialogFormVisible的值是" + this.parent_dialogFormVisible);
+      console.log(
+        "按了click按鈕parent_dialogFormVisible的值是" +
+          this.parent_dialogFormVisible
+      );
     },
     createHandler() {
       if (!this.inputTask) {
@@ -97,3 +104,14 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+
+.big-title {
+  text-align: center;
+}
+.add-button {
+  text-align: left;
+}
+</style>
