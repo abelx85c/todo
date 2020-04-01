@@ -1,7 +1,7 @@
 <template>
-  <el-container>
-    <el-main>
-      <h1>layout/BaseMain</h1>
+  <el-container class="app-main">
+    <el-main >
+      <router-view :key="key" />
     </el-main>
   </el-container>
 </template>
@@ -10,6 +10,11 @@
 
 
 export default {
-
+  name: 'AppMain',
+  computed: {
+    key() {
+      return this.$route.path
+    }
+  }
 };
 </script>

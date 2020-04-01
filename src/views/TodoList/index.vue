@@ -1,18 +1,23 @@
 <template>
   <el-container>
     <el-main>
-      <TodoList></TodoList>
+        <!-- <Layout /> -->
+        <TodoListAll /> 
+        <router-view /> 
+
     </el-main>
   </el-container>
 </template>
 
 <script>
-import TodoList from "@/components/TodoList.vue";
+import TodoListAll from "@/components/TodoListAll.vue";
+// import Layout from '@/layout'
 
 export default {
   name: "",
   components: {
-    TodoList
+    TodoListAll
+    // Layout 
   }
 };
 </script>

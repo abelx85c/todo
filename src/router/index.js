@@ -7,7 +7,12 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'aaa',
+    component: () => import('@/views/Home.vue')
+  },
+  {
+    path: '/home',
+    name: 'home',
     component: () => import('@/views/Home.vue')
   },
   {
@@ -16,15 +21,17 @@ const routes = [
     component: () => import('@/views/TodoList/hello.vue'),
     children: [
       {
-        path: 'todolist',
-        name: 'hello-TodoList',
+        path: 'todolistall',
+        name: 'hello-TodoListAll',
         component: () => import('@/views/TodoList/index.vue'),
         meta: { title: '待辦清單', icon: 'el-icon-notebook-1' },
       }
     ]
+  },
+  {
+    path: '*',
+    redirect: '/home'
   }
-
-  
 ]
 
 const router = new VueRouter({
