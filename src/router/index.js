@@ -7,22 +7,25 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'aaa',
-    component: () => import('@/views/Home.vue')
+    name: 'Layout',
+    component: () => import('@/layout')
   },
   {
-    path: '/home',
-    name: 'home',
-    component: () => import('@/views/Home.vue')
+    path: '/404',
+    name: '404',
+    component: () => import('@/views/404.vue')
   },
   {
-    path: '/hello',
-    name: 'Hello',
-    component: () => import('@/views/TodoList/hello.vue'),
+    // path: '/hello',
+    // name: 'Hello',
+    // component: () => import('@/views/TodoList/hello.vue'),
+    path: '/todolist',
+    name: 'Layout',
+    component: () => import('@/layout'),
     children: [
       {
         path: 'todolistall',
-        name: 'hello-TodoListAll',
+        name: 'hello-todolistall',
         component: () => import('@/views/TodoList/index.vue'),
         meta: { title: '待辦清單', icon: 'el-icon-notebook-1' },
       }
@@ -30,7 +33,7 @@ const routes = [
   },
   {
     path: '*',
-    redirect: '/home'
+    redirect: '/404'
   }
 ]
 

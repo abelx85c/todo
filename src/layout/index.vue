@@ -2,18 +2,18 @@
   <div id="app">
     <el-container>
       <el-aside width="200px">
-        <BaseAside></BaseAside>
+        <BaseAside />
       </el-aside>
       <el-container>
         <el-header>
-          <BaseHeader></BaseHeader>
+          <BaseHeader />
         </el-header>
         <el-main>
-          <BaseMain>
-          </BaseMain>
+          <BaseMain />
+          <h1>layout/index</h1>
         </el-main>
         <el-footer>
-          <BaseFooter></BaseFooter>
+          <BaseFooter />
         </el-footer>
       </el-container>
     </el-container>
