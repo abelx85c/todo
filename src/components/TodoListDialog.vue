@@ -13,8 +13,8 @@
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="offClick">取 消</el-button>
       <el-button type="primary" @click="createHandler_dialog">確定</el-button>
+      <el-button @click="offClick">取 消</el-button>
     </div>
   </el-dialog>
 </template>
