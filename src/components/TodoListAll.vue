@@ -23,8 +23,10 @@
     </div>
 
     <el-table v-bind:data="taskList">
-      <el-table-column prop="id" label="項目ID" width="140"></el-table-column>
-      <el-table-column prop="tittle" label="項目標題"></el-table-column>
+      <el-table-column prop="id" label="ID" width="140"></el-table-column>
+      <el-table-column prop="date" label="日期"></el-table-column>
+      <el-table-column prop="type" label="類型"></el-table-column>
+      <el-table-column prop="title" label="標題"></el-table-column>
       <el-table-column>
         <template>
           <el-button size="mini" type="warning" v-on:click="updateHandler()">UPDATE</el-button>
@@ -56,7 +58,12 @@ export default {
   name: "TodoList",
   data: function() {
     return {
-      inputTask: "",
+      // inputTask: "",
+      inputTask:{
+        date:"",
+        type:"",
+        title:""
+      },
       parent_dialogFormVisible: false
     };
   },
@@ -77,11 +84,13 @@ export default {
       }
       axios
         .post("http://localhost:3000/contents", {
-          tittle: this.inputTask,
+          date: this.inputTask.date,
+          type: this.inputTask.type,
+          title: this.inputTask.title,
           ischecked: false
         })
         .then(res => {
-          this.inputTask = "";
+          // this.inputTask = "";
           this.$store.commit("addContent", res.data);
         });
     },
@@ -95,9 +104,11 @@ export default {
     }
   },
   mounted() {
+    //讀取任務清單
     this.$store.dispatch("CONTENTS_READ");
   },
   computed: {
+    //讀取任務清單
     taskList() {
       return this.$store.state.tasklist;
     }

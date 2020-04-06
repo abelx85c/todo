@@ -1,8 +1,15 @@
 <template>
   <el-dialog title="新增任務" :visible.sync="child_dialogFormVisible" :before-close="offClick">
     <el-form :model="form">
-      <el-form-item label="任務名稱" :label-width="formLabelWidth">
-        <el-input v-model="form.name" autocomplete="off"></el-input>
+
+      <el-form-item label="日期" :label-width="formLabelWidth">
+        <el-input v-model="form.date" autocomplete="off" placeholder="請輸入"></el-input>
+      </el-form-item>  
+      <el-form-item label="類型" :label-width="formLabelWidth">  
+        <el-input v-model="form.type" autocomplete="off" placeholder="請輸入"></el-input>
+      </el-form-item>  
+      <el-form-item label="標題" :label-width="formLabelWidth">
+        <el-input v-model="form.title" autocomplete="off" placeholder="請輸入"></el-input>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -21,16 +28,11 @@ export default {
   data() {
     return {
       form: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: ""
+        date: "",
+        type: "",
+        title: ""
       },
-      formLabelWidth: "120px"
+      formLabelWidth: "50px"
     };
   },
   props: {
@@ -47,18 +49,22 @@ export default {
     createHandler_dialog() {
       this.$emit('offDialog')
       console.log("子組件Dialog offClick() 回傳母組件")
-      if (!this.form.name) {
+      if (!this.form.title) {
         return false;
       }
       axios
         .post("http://localhost:3000/contents", {
-          tittle: this.form.name,
+          date: this.form.date,
+          type: this.form.type,
+          title: this.form.title,
           ischecked: false
         })
         .then(res => {
-          this.form.name = "";
+          this.form.date = "";
+          this.form.type = "";
+          this.form.title = "";
           this.$store.commit("addContent", res.data);
-          console.log(res.data)
+          console.log(res.data);
         });
 
     }

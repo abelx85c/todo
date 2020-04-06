@@ -17,7 +17,7 @@ export default new Vuex.Store({
     tasklist: []
   },
   mutations: {
-    setContents(state, data){
+    readContents(state, data){
       state.tasklist = data
       //alert("mutations/setContents")
       //console.log(state.contents)
@@ -32,7 +32,7 @@ export default new Vuex.Store({
   actions: {
     CONTENTS_READ:(context) => {
       return axios.get('http://localhost:3000/contents/').then((res)=>{
-        context.commit('setContents', res.data)
+        context.commit('readContents', res.data)
         console.log("action 呼叫的讀取API返回的是")
         console.log(res.data)
       })
