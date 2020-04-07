@@ -40,20 +40,6 @@ export default new Vuex.Store({
         // console.log(res.data)
       })
     },
-    // CONTENT_UPDATE:(context, target )=>{
-    //   let index = context.state.tasklist.indexOf(target)
-    //   console.log("action 接收到的是")
-    //   console.log(context)
-    //   console.log(target )
-    //   console.log(index)
-    //   console.log(target.id)
-    //   return axios.put("http://localhost:3000/contents" + target.id,   target).then((res)=>{
-    //     context.commit('editContents', index , res)
-    //     console.log("action 呼叫的修改API返回的是"+ res)
-    //     console.log("傳去mutation的index是"+ index)
-
-    //   })
-    // },
     CONTENT_DELETE:(context, { target  }) => {
       let index = context.state.tasklist.indexOf(target)
       console.log("action拿到的index是" + index)
@@ -63,7 +49,6 @@ export default new Vuex.Store({
         console.log("action 呼叫的刪除API返回的是")
         console.log( res)
         console.log("傳去mutation的index是"+ index)
-
       })
     }
   },
