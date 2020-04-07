@@ -9,22 +9,22 @@
     },
     {
       "date": "0407",
-      "type": "marquee",
-      "title": "mother's day",
+      "type": "button",
+      "title": "lemon",
       "ischecked": false,
       "id": 2
     },
     {
       "date": "0407",
       "type": "button",
-      "title": "cakewefwf",
+      "title": "candy",
       "ischecked": false,
       "id": 3
     },
     {
       "date": "0407",
       "type": "button",
-      "title": "cake",
+      "title": "ddd",
       "ischecked": false,
       "id": 4
     }

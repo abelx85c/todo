@@ -141,22 +141,25 @@ export default {
       this.cancelHandler()
     },
     summitHandler(){
+      let id = this.editIndex + 1
       //讓this.inputTask.date這種短一點
       let { date, type, title} = this.inputTask
       if(!date || !type || !title) return
       // console.log("src/componets/TodoListAll summitHandler 傳到action的是")
       // console.log(this.inputTask)
       // this.$store.dispatch("CONTENT_UPDATE", this.inputTask);
-      axios.put("http://localhost:3000/contents/" + this.editIndex, {
+      axios.put("http://localhost:3000/contents/" + id, {
           date: this.inputTask.date,
           type: this.inputTask.type,
           title: this.inputTask.title,
           ischecked: false
       })
       .then((res)=>{
-        console.log("src/componets/TodoListAll summitHandler 傳到mutation的是")
+        console.log("src/componets/TodoListAll summitHandler 傳去mutation的是")
         console.log(res.data)
-        this.$store.commit('editContents', res.data)
+        this.cancelHandler()
+        this.$store.commit("editContent", res.data)
+        this.$store.dispatch("CONTENTS_READ")
       })
     },
     cancelHandler(){
