@@ -53,7 +53,7 @@ export default {
         return false;
       }
       axios
-        .post("http://localhost:3000/contents", {
+        .post("http://localhost:3000/contents/", {
           date: this.form.date,
           type: this.form.type,
           title: this.form.title,

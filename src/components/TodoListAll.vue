@@ -24,7 +24,7 @@
     <div class="input">
       <el-input class="input-date" type="text" placeholder="日期" v-model="inputTask.date"></el-input>
       <el-input class="input-type" type="text" placeholder="類型" v-model="inputTask.type"></el-input>
-      <el-input class="input-title" type="text" placeholder="標題" v-model="inputTask.title"></el-input>
+      <el-input class="input-title" type="text" placeholder="請輸入欲修改的標題" v-model="inputTask.title"></el-input>
       <el-button class="input-summit"
                             size="small"
                             type="primary"
@@ -103,22 +103,22 @@ export default {
           this.parent_dialogFormVisible
       );
     },
-    createHandler() {
-      if (!this.inputTask) {
-        return false;
-      }
-      axios
-        .post("http://localhost:3000/contents", {
-          date: this.inputTask.date,
-          type: this.inputTask.type,
-          title: this.inputTask.title,
-          ischecked: false
-        })
-        .then(res => {
-          // this.inputTask = "";
-          this.$store.commit("addContent", res.data);
-        });
-    },
+    // createHandler() {
+    //   if (!this.inputTask) {
+    //     return false;
+    //   }
+    //   axios
+    //     .post("http://localhost:3000/contents", {
+    //       date: this.inputTask.date,
+    //       type: this.inputTask.type,
+    //       title: this.inputTask.title,
+    //       ischecked: false
+    //     })
+    //     .then(res => {
+    //       // this.inputTask = "";
+    //       this.$store.commit("addContent", res.data);
+    //     });
+    // },
     editHandler(index) {
       this.editIndex = index
       console.log("src/components/TodoListAll editHandler收到的參數是 " +  index)
@@ -144,7 +144,20 @@ export default {
       //讓this.inputTask.date這種短一點
       let { date, type, title} = this.inputTask
       if(!date || !type || !title) return
-      axios.put("http://localhost:3000/contents" + this.editIndex,)
+      // console.log("src/componets/TodoListAll summitHandler 傳到action的是")
+      // console.log(this.inputTask)
+      // this.$store.dispatch("CONTENT_UPDATE", this.inputTask);
+      axios.put("http://localhost:3000/contents/" + this.editIndex, {
+          date: this.inputTask.date,
+          type: this.inputTask.type,
+          title: this.inputTask.title,
+          ischecked: false
+      })
+      .then((res)=>{
+        console.log("src/componets/TodoListAll summitHandler 傳到mutation的是")
+        console.log(res.data)
+        this.$store.commit('editContents', res.data)
+      })
     },
     cancelHandler(){
       this.editIndex = null

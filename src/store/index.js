@@ -17,36 +17,53 @@ export default new Vuex.Store({
     tasklist: []
   },
   mutations: {
-    readContents(state, data){
+    setContents(state, data){
       state.tasklist = data
       //alert("mutations/setContents")
       //console.log(state.contents)
     },
+    editContent(state, index,data){
+      state.tasklist[index+1] = data
+    },
     addContent(state, data){
       state.tasklist.push(data)
     },
-    deleteContent(state, data){
+    removeContent(state, data){
       state.tasklist.splice(data, 1)
     }
   },
   actions: {
     CONTENTS_READ:(context) => {
       return axios.get('http://localhost:3000/contents/').then((res)=>{
-        context.commit('readContents', res.data)
-        console.log("action 呼叫的讀取API返回的是")
-        console.log(res.data)
+        context.commit('setContents', res.data)
+        // console.log("action 呼叫的讀取API返回的是")
+        // console.log(res.data)
       })
     },
+    // CONTENT_UPDATE:(context, target )=>{
+    //   let index = context.state.tasklist.indexOf(target)
+    //   console.log("action 接收到的是")
+    //   console.log(context)
+    //   console.log(target )
+    //   console.log(index)
+    //   console.log(target.id)
+    //   return axios.put("http://localhost:3000/contents" + target.id,   target).then((res)=>{
+    //     context.commit('editContents', index , res)
+    //     console.log("action 呼叫的修改API返回的是"+ res)
+    //     console.log("傳去mutation的index是"+ index)
+
+    //   })
+    // },
     CONTENT_DELETE:(context, { target  }) => {
       let index = context.state.tasklist.indexOf(target)
       console.log("action拿到的index是" + index)
       if(index <= -1) {return false}
       return axios.delete('http://localhost:3000/contents/' + target.id).then((res)=>{
-        context.commit('deleteContent', index)
+        context.commit('removeContent', index)
         console.log("action 呼叫的刪除API返回的是")
-        console.log(res)
-        console.log("傳去mutation的index是")
-        console.log(index)
+        console.log( res)
+        console.log("傳去mutation的index是"+ index)
+
       })
     }
   },
