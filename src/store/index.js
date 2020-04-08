@@ -22,10 +22,16 @@ export default new Vuex.Store({
       //alert("mutations/setContents")
       //console.log(state.contents)
     },
+    editContent(state, data){
+      let index = data.id
+      state.tasklist[index] = data
+      console.log("mutation editContent 接收到的 data是")
+      console.log(data)
+    },
     addContent(state, data){
       state.tasklist.push(data)
     },
-    deleteContent(state, data){
+    removeContent(state, data){
       state.tasklist.splice(data, 1)
     }
   },
@@ -33,8 +39,8 @@ export default new Vuex.Store({
     CONTENTS_READ:(context) => {
       return axios.get('http://localhost:3000/contents/').then((res)=>{
         context.commit('setContents', res.data)
-        console.log("action 呼叫的讀取API返回的是")
-        console.log(res.data)
+        // console.log("action 呼叫的讀取API返回的是")
+        // console.log(res.data)
       })
     },
     CONTENT_DELETE:(context, { target  }) => {
@@ -42,11 +48,10 @@ export default new Vuex.Store({
       console.log("action拿到的index是" + index)
       if(index <= -1) {return false}
       return axios.delete('http://localhost:3000/contents/' + target.id).then((res)=>{
-        context.commit('deleteContent', index)
+        context.commit('removeContent', index)
         console.log("action 呼叫的刪除API返回的是")
-        console.log(res)
-        console.log("傳去mutation的index是")
-        console.log(index)
+        console.log( res)
+        console.log("傳去mutation的index是"+ index)
       })
     }
   },
