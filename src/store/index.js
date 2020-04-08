@@ -27,6 +27,7 @@ export default new Vuex.Store({
       state.tasklist[index] = data
       console.log("mutation editContent 接收到的 data是")
       console.log(data)
+      console.log(state.tasklist[index])
     },
     addContent(state, data){
       state.tasklist.push(data)

@@ -157,9 +157,9 @@ export default {
       .then((res)=>{
         console.log("src/componets/TodoListAll summitHandler 傳去mutation的是")
         console.log(res.data)
-        this.cancelHandler()
         this.$store.commit("editContent", res.data)
         this.$store.dispatch("CONTENTS_READ")
+        this.cancelHandler()
       })
     },
     cancelHandler(){
