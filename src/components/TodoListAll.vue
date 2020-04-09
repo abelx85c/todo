@@ -22,24 +22,26 @@
     </div>
 
     <div class="input">
-      <el-input class="input-date" type="text" placeholder="日期" v-model="inputTask.date"></el-input>
-      <el-input class="input-type" type="text" placeholder="類型" v-model="inputTask.type"></el-input>
-      <el-input class="input-title" type="text" placeholder="請輸入欲修改的標題" v-model="inputTask.title"></el-input>
-      <el-button class="input-summit"
-                            size="small"
-                            type="primary"
-                            plain
-                            @click = "summitHandler"
-                            >送出修改</el-button>
-      <el-button class="input-cancel"
-                            size="small"
-                            type="info"
-                            plain
-                            @click = "cancelHandler"
-                            >取消修改</el-button>
+      <el-row :gutter="20">
+        <el-col :span="3"><el-input class="input-date" type="text" placeholder="日期" v-model="inputTask.date"></el-input></el-col>
+        <el-col :span="3"><el-input class="input-type" type="text" placeholder="類型" v-model="inputTask.type"></el-input></el-col>
+        <el-col :span="12"><el-input class="input-title" type="text" placeholder="請輸入欲修改的標題" v-model="inputTask.title"></el-input></el-col>
+        <el-col :span="3"><el-button class="input-summit"
+                              size="small"
+                              type="primary"
+                              plain
+                              @click = "summitHandler"
+                              >送出修改</el-button></el-col>
+        <el-col :span="3"><el-button class="input-cancel"
+                              size="small"
+                              type="info"
+                              plain
+                              @click = "cancelHandler"
+                              >取消修改</el-button></el-col>
+      </el-row>                        
     </div>
 
-    <el-table v-bind:data="taskList">
+    <el-table v-bind:data="taskList" stripe="true">
       <el-table-column>
         <template>
           <el-button type="success" icon="el-icon-check" circle></el-button>
@@ -190,7 +192,7 @@ export default {
 .add-button {
   text-align: left;
 }
-.input-date {
+/* .input-date {
   width: 10%;
 }
 .input-type {
@@ -204,5 +206,5 @@ export default {
 }
 .input-summit {
   width: 10%;
-}
+} */
 </style>

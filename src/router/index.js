@@ -19,13 +19,13 @@ const routes = [
     // path: '/hello',
     // name: 'Hello',
     // component: () => import('@/views/TodoList/hello.vue'),
-    path: '/todolist',
+    path: '/portfolio',
     name: 'Layout',
     component: () => import('@/layout'),
     children: [
       {
-        path: 'todolistall',
-        name: 'hello-todolistall',
+        path: 'todolist',
+        name: 'todolist',
         component: () => import('@/views/TodoList/index.vue'),
         meta: { title: '待辦清單', icon: 'el-icon-notebook-1' },
       }
