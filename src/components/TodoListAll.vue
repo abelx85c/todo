@@ -41,7 +41,7 @@
       </el-row>                        
     </div>
 
-    <el-table v-bind:data="taskList" stripe="true">
+    <el-table v-bind:data="taskList">
       <el-table-column>
         <template>
           <el-button type="success" icon="el-icon-check" circle></el-button>
@@ -105,6 +105,7 @@ export default {
           this.parent_dialogFormVisible
       );
     },
+
     // createHandler() {
     //   if (!this.inputTask) {
     //     return false;

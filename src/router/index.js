@@ -28,6 +28,11 @@ const routes = [
         name: 'todolist',
         component: () => import('@/views/TodoList/index.vue'),
         meta: { title: '待辦清單', icon: 'el-icon-notebook-1' },
+      },
+      {
+        path: 'weather',
+        name: 'weather',
+        component: () => import('@/views/Weather/index.vue'),
       }
     ]
   },

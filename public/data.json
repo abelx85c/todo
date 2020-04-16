@@ -15,11 +15,11 @@
       "id": 2
     },
     {
-      "date": "0407",
-      "type": "button",
-      "title": "cake",
+      "date": "0416",
+      "type": "marquee",
+      "title": "golden captain",
       "ischecked": false,
-      "id": 3
+      "id": 4
     }
   ]
 }
