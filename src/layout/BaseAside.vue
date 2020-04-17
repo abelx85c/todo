@@ -10,9 +10,11 @@
           </template>
           <el-menu-item-group>
             <el-menu-item index="1-1">
-              <router-link class="link" to="/portfolio/todolist">待辦清單</router-link>
+              <router-link to="/portfolio/todolist">待辦清單</router-link>
             </el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
+            <el-menu-item index="1-2">
+              <router-link to="/portfolio/weather">氣象地圖</router-link>
+            </el-menu-item>
             <el-menu-item index="1-3">选项3</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
@@ -79,11 +81,16 @@ export default {
 </script>
 
 
-<style>
+<style lang="scss" scoped>
 .el-aside {
   color: #333;
 }
-.link {
+a {
+  color: #000;
   text-decoration:none;
+}
+.router-link-active {
+    color: #000;
+    text-decoration: none;
 }
 </style>
