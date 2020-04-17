@@ -3,12 +3,11 @@
     <div class="title">
       <h2>Taiwan Weather MAP</h2>
       <!-- <hr> -->
-      <div class="forcast">
-        <h4 class="cityname">" {{ now_area }} "</h4>
-        <h5>- 體感溫度：{{}}</h5>
-        <h5>- 降雨量： {{}}</h5>
-
-        <h3>{{}}</h3>
+      <div class="forcast" v-if="now_area">
+        <h4 class="cityname">" {{ now_area.city }} "</h4>
+        <h5>體感溫度：{{ now_area.tempature }}</h5>
+        <h5>降雨量： {{ now_area.rainfall }}</h5>
+        <h3>{{ now_area.weather }}</h3>
       </div>
     </div>
 
@@ -365,31 +364,33 @@ export default {
   },
   computed: {
     now_area() {
-      var vobj = this;
+      var vobj = this
       var result = place_data.filter(function(obj) {
-        return obj.tag == vobj.filter;
+        return obj.tag == vobj.filter
       });
-      return result
+      if (result.length == 0) {
+                return
+      }
+      return result[0]
     }
   },
-  created() {}
+  created() {
+    
+  },
+  mounted() {
+    var vobj = this
+    $("path").mouseenter(function() {
+      var cityname = $(this).attr("name")
+      vobj.filter = cityname
+      // $(".forcast").css("opacity", "0.3")
+    })
+    $("path").mouseleave(function() {
+      // $(".forcast").css("opacity", "0")
+      vobj.filter = ""
+    })
+  }
 };
 
-$(document).ready(function() {
-  $("path").mouseenter(function() {
-    var cityname = $(this).attr("name");
-
-    //vm.filter = cityname;
-    console.log(this)
-    this.filter = cityname;
-
-    //   $(".forcast").css("opacity", "1");
-    // });
-
-    // $("path").mouseleave(function(e) {
-    //   $(".forcast").css("opacity", "0");
-  });
-});
 </script>
 
 
@@ -416,7 +417,7 @@ $color-brightgold: rgba(241, 215, 67, 0.938);
   h2 {
     margin: 0; // text-align: center;
   }
-  opacity: 0.5;
+  opacity: 0.8;
   transition: 1s;
 }
 svg {
