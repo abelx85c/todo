@@ -354,6 +354,9 @@ var place_data = [
   }
 ];
 
+//中央氣象局授權碼
+//CWB-3EDC3BD2-3F2B-4C61-AC73-EF235DBD77B0
+
 export default {
   name: "WeatherMap",
   data() {
@@ -364,33 +367,50 @@ export default {
   },
   computed: {
     now_area() {
-      var vobj = this
+      var vobj = this;
       var result = place_data.filter(function(obj) {
-        return obj.tag == vobj.filter
+        return obj.tag == vobj.filter;
       });
       if (result.length == 0) {
-                return
+        return;
       }
-      return result[0]
+      return result[0];
     }
   },
   created() {
-    
+      //var vobj = this
+      axios.get(
+        "https://cors-anywhere.herokuapp.com/http://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=CWB-3EDC3BD2-3F2B-4C61-AC73-EF235DBD77B0"
+      ).then(res => {
+        console.log("res.data.records.locations[0].location is");
+        console.log(res.data.records.locations[0].location);
+        for(let index in res.data.records.locations[0].location)
+        {
+          console.log(
+            res.data.records.locations[0].location[index].locationName + "\n" +
+            res.data.records.locations[0].location[index].weatherElement[1].description + "\n" +
+            res.data.records.locations[0].location[index].weatherElement[1].time[0].elementValue[0].value
+          )
+          // vobj.place_data[index] = res.data.records.locations[0].location[index]
+
+        }
+      });
   },
   mounted() {
-    var vobj = this
+    var vobj = this;
     $("path").mouseenter(function() {
-      var cityname = $(this).attr("name")
-      vobj.filter = cityname
-      // $(".forcast").css("opacity", "0.3")
-    })
+      var cityname = $(this).attr("name");
+      vobj.filter = cityname;
+      // $(".forcast").css("opacity", "1")
+    });
     $("path").mouseleave(function() {
-      // $(".forcast").css("opacity", "0")
-      vobj.filter = ""
-    })
+      // $(".forcast").css("opacity", "0.3")
+      vobj.filter = "";
+    });
   }
 };
 
+$(document).ready(function() {});
 </script>
 
 
