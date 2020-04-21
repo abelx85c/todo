@@ -153,6 +153,7 @@ import $ from "jquery";
 
 Vue.use(VueAxios, axios);
 
+
 var place_data = [
   {
     id: 1,
@@ -354,11 +355,6 @@ var place_data = [
 ];
 
 
-
-
-//中央氣象局授權碼
-//CWB-3EDC3BD2-3F2B-4C61-AC73-EF235DBD77B0
-
 export default {
   name: "WeatherMap",
   data() {
@@ -377,39 +373,10 @@ export default {
         return;
       }
       return result[0];
-    },
-    weatherlist() {
-      return this.$store.state.weatherlist;
     }
+
   },
   created() {
-    //var vobj = this
-    axios
-      .get(
-        "https://cors-anywhere.herokuapp.com/http://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=CWB-3EDC3BD2-3F2B-4C61-AC73-EF235DBD77B0"
-      )
-      .then(res => {
-        // console.log("res.data.records.locations[0].location is");
-        // console.log(res.data.records.locations[0].location);
-        for (let index in res.data.records.locations[0].location) {
-          console.log(
-            res.data.records.locations[0].location[index].locationName + "\n" +
-            // "時間" + "\n" +
-            // res.data.records.locations[0].location[index].weatherElement[2].time[0].dataTime  + "\n" +
-            // res.data.records.locations[0].location[index].weatherElement[1].description + "\n" +
-            // res.data.records.locations[0].location[index].weatherElement[1].time[0].elementValue[0].value + "\n" +
-            // res.data.records.locations[0].location[index].weatherElement[2].description + "\n" +
-            // res.data.records.locations[0].location[index].weatherElement[2].time[0].elementValue[0].value + "度C \n"+
-            // res.data.records.locations[0].location[index].weatherElement[6].description + "\n" +
-            res.data.records.locations[0].location[index].weatherElement[6].time[0].elementValue[0].value
-          );
-          // vobj.place_data[index] = res.data.records.locations[0].location[index]
-          this.$store.commit(
-            "setWeather",
-            res.data.records.locations[0].location[index]
-          );
-        }
-      });
   },
   mounted() {
     var vobj = this;

@@ -15,7 +15,7 @@ export default new Vuex.Store({
 
   state: {
     tasklist: [],
-    weatherlist: []
+
   },
   mutations: {
     setContents(state, data){
@@ -36,9 +36,7 @@ export default new Vuex.Store({
     removeContent(state, data){
       state.tasklist.splice(data, 1)
     },
-    setWeather(state, data){
-      state.weatherlist = data
-    }
+
   },
   actions: {
     CONTENTS_READ:(context) => {
